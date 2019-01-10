@@ -45,6 +45,11 @@ public class PLayerController : MonoBehaviour
             count = count + 1;
             SetCountText();
         }
+        else if (other.gameObject.CompareTag("endwall"))
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            winText.text = "You Win";
+        }
     }
 
     void SetCountText()
@@ -52,8 +57,13 @@ public class PLayerController : MonoBehaviour
         countText.text = "Count: " + count.ToString();
         if (count >= 12)
         {
-            winText.text = "You Win";
+            DisplayWinText();
         }
 
+    }
+
+    void DisplayWinText()
+    {
+        winText.text = "You Win! Score: " + count.ToString();
     }
 }
